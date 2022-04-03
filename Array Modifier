@@ -1,0 +1,33 @@
+#PROBLEM <Array Modifier>
+#You are given an array with integers. Write a program to modify the elements after receiving the following commands:
+#	•	"multiply {index1} {index2}" takes element at the 1st index and multiply it with the element at 2nd index. Save the product at the 1st index.
+#	•	"decrease" decreases all elements in the array with 1.
+
+# On the first input line, you will be given the initial array values separated by a single space.
+# On the next lines you will receive commands until you receive the command "end". The commands are as follow: 
+#	•	"swap {index1} {index2}"
+#	•	"multiply {index1} {index2}"
+#	•	"decrease"
+
+#The output should be printed on the console and consist of elements of the modified array – separated by a comma and a single space ", ".
+
+num_array = [int(x) for x in input().split()]
+command = input()
+while command != 'end':
+    args = command.split()
+    action = args[0]
+    if action == 'swap':
+        index_1 = int(args[1])
+        index_2 = int(args[2])
+        num_array[index_1], num_array[index_2] = num_array[index_2], num_array[index_1]
+
+    elif action == 'multiply':
+        index_1 = int(args[1])
+        index_2 = int(args[2])
+        num_array[index_1] = num_array[index_1] * num_array[index_2]
+
+    elif action == 'decrease':
+        num_array = [int(x)-1 for x in num_array]
+
+    command = input()
+print(*num_array, sep=', ')
